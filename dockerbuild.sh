@@ -5,7 +5,7 @@ rm -rf ./dist
 
 echo Building app
 rm -rf node_modules && npm cache clean && npm i
-npm install
+#npm install
 bower install
 grunt
 
