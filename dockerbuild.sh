@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -e
-set -o pipefail
+set -exo pipefail
 
 echo Cleaning...
 rm -rf ./dist
