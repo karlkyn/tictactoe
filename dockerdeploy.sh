@@ -3,7 +3,7 @@
 set -exo pipefail
 
 echo "Connecting to deploy server"
-ssh root@178.62.64.70
+ssh -t -t root@178.62.64.70
 
 echo "Stopping Docker"
 docker kill $(docker ps -q)
