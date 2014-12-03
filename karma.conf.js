@@ -6,6 +6,13 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
+    reporters: ['progress', 'junit'],
+
+    junitReporter: {
+      outputFile : 'testResult.xml',
+      suite: ''
+    },
+
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
@@ -36,7 +43,7 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee',
+      '**/*.coffee': 'coffee'
     },
 
     ngHtml2JsPreprocessor: {
