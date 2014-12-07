@@ -1,11 +1,11 @@
 'use strict';
 
-var should = require('should');
+var should = require("should");
 
-var tictactoe = require('./tictactoe');
+var tictactoe = require("./tictactoe");
 
-describe('game created event', function() {
-  it('should emit game created event', function() {
+describe("create game command", function() {
+  it("should emit game created event", function() {
     //Arrange
     var given = [];
     var when =
