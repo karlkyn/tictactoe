@@ -1,7 +1,6 @@
 'use strict';
 
 var should = require('should');
-var _ = require('lodash');
 
 var tictactoe = require('./tictactoe');
 
@@ -13,7 +12,7 @@ describe('game created event', function() {
       {
         cmd: "CreateGame",
         user: {
-          userName: "karlkyn"
+          username: "karlkyn"
         },
         gameName: "FunTimes",
         timestamp: 1417851954
@@ -22,7 +21,7 @@ describe('game created event', function() {
       {
         event: "GameCreated",
         user: {
-          userName: "karlkyn"
+          username: "karlkyn"
         },
         gameName: "FunTimes",
         timestamp: 1417851954
