@@ -33,7 +33,17 @@ module.exports = function (history) {
               timestamp: cmd.timestamp
             }];
           }
+        },
+        "PlaceMove": function(cmd) {
+          return [{
+            event: "MovePlaced",
+            user: cmd.user,
+            gameName:cmd.gameName,
+            timestamp: cmd.timestamp,
+            move: cmd.move
+          }]
         }
+
       };
       return cmdHandlers[cmd.cmd](cmd)
     }
