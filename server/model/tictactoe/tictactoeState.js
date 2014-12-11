@@ -28,7 +28,8 @@ module.exports = function(history) {
       });
 
       if (winSum === 3 || winSum === -3) {
-        return gameWon = true;
+        gameWon = true;
+        return;
       }
 
       // Check for vertical line win
@@ -38,7 +39,8 @@ module.exports = function(history) {
       });
 
       if (winSum === 3 || winSum === -3) {
-        return gameWon = true;
+        gameWon = true;
+        return;
       }
 
       // Check for diagonal line win top left to bottom right
@@ -48,7 +50,8 @@ module.exports = function(history) {
       }
 
       if (winSum === 3 || winSum === -3) {
-        return gameWon = true;
+        gameWon = true;
+        return;
       }
 
       // A crude way for checking diagonal win top right to bottom left
@@ -58,12 +61,14 @@ module.exports = function(history) {
       winSum += gameBoard[2][0];
 
       if (winSum === 3 || winSum === -3) {
-        return gameWon = true;
+        gameWon = true
+        return;
       }
 
       // Check for draw
       if (moves >= 9) {
         gameDraw = true;
+        return;
       }
     }
   }
