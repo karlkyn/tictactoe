@@ -35,13 +35,23 @@ module.exports = function (history) {
           }
         },
         "PlaceMove": function(cmd) {
-          return [{
+          var events = [{
             event: "MovePlaced",
             user: cmd.user,
-            gameName:cmd.gameName,
+            gameName: cmd.gameName,
             timestamp: cmd.timestamp,
             move: cmd.move
-          }]
+          }];
+          gameState.processEvents(events);
+          if(gameState.gameWon()) {
+            events.push({
+              event: "GameWon",
+              user: cmd.user,
+              gameName: cmd.gameName,
+              timestamp: cmd.timestamp
+            })
+          }
+          return events;
         }
 
       };

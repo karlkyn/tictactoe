@@ -23,7 +23,23 @@ var gameJoinedEvent = {
   timestamp: 1417851954
 };
 
+function placeMove(coordinates, symbol) {
+  return {
+    event: "MovePlaced",
+    user: {
+      userName: "karlkyn"
+    },
+    gameName: "Fun times",
+    timestamp: 1417851954,
+    move: {
+      coordinates: coordinates,
+      symbol: symbol
+    }
+  }
+}
+
 var X = 1;
+var O = -1;
 
 describe("move placed command", function() {
   it("should emit move placed event", function() {
@@ -60,6 +76,105 @@ describe("move placed command", function() {
     var actualEvents = tictactoe(given).executeCommand(when);
 
     //Assert
+    should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
+  });
+  it("should emit game won on top row win", function() {
+    //Arrange
+    var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,0], X), placeMove([0,1], X)];
+
+    var when = {
+      cmd: "PlaceMove",
+      user: {
+        userName: "karlkyn"
+      },
+      gameName: "Fun times",
+      timestamp: 1417851954,
+      move: {
+        coordinates: [0,2],
+        symbol: X
+      }
+    };
+
+    var then = [placeMove([0,2], X),
+      {
+        event: "GameWon",
+        user: {
+          userName: "karlkyn"
+        },
+        gameName: "Fun times",
+        timestamp: 1417851954
+      }];
+
+    // Act
+    var actualEvents = tictactoe(given).executeCommand(when);
+
+    // Assert
+    should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
+  });
+  it("should emit game won on middle row win", function() {
+    //Arrange
+    var given = [gameCreatedEvent, gameJoinedEvent, placeMove([1,0], X), placeMove([1,1], X)];
+
+    var when = {
+      cmd: "PlaceMove",
+      user: {
+        userName: "karlkyn"
+      },
+      gameName: "Fun times",
+      timestamp: 1417851954,
+      move: {
+        coordinates: [1,2],
+        symbol: X
+      }
+    };
+
+    var then = [placeMove([1,2], X),
+      {
+        event: "GameWon",
+        user: {
+          userName: "karlkyn"
+        },
+        gameName: "Fun times",
+        timestamp: 1417851954
+      }];
+
+    // Act
+    var actualEvents = tictactoe(given).executeCommand(when);
+
+    // Assert
+    should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
+  });
+  it("should emit game won on bottom row win", function() {
+    //Arrange
+    var given = [gameCreatedEvent, gameJoinedEvent, placeMove([2,0], X), placeMove([2,1], X)];
+
+    var when = {
+      cmd: "PlaceMove",
+      user: {
+        userName: "karlkyn"
+      },
+      gameName: "Fun times",
+      timestamp: 1417851954,
+      move: {
+        coordinates: [2,2],
+        symbol: X
+      }
+    };
+
+    var then = [placeMove([2,2], X),
+      {
+        event: "GameWon",
+        user: {
+          userName: "karlkyn"
+        },
+        gameName: "Fun times",
+        timestamp: 1417851954
+      }];
+
+    // Act
+    var actualEvents = tictactoe(given).executeCommand(when);
+
+    // Assert
     should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
   });
 });
