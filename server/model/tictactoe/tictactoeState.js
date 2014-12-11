@@ -30,6 +30,35 @@ module.exports = function(history) {
         return gameWon = true;
       }
 
+      // Check for vertical line win
+      winSum = 0;
+      _.forEach(gameBoard, function(gameRow){
+        winSum += gameRow[col];
+      });
+
+      if (winSum === 3 || winSum === -3) {
+        return gameWon = true;
+      }
+
+      // Check for diagonal line win top left to bottom right
+      winSum = 0;
+      for(var i = 0; i < 3; i++) {
+        winSum += gameBoard[i][i];
+      }
+
+      if (winSum === 3 || winSum === -3) {
+        return gameWon = true;
+      }
+
+      // A crude way for checking diagonal win top right to bottom left
+      winSum = 0;
+      winSum += gameBoard[0][2];
+      winSum += gameBoard[1][1];
+      winSum += gameBoard[2][0];
+
+      if (winSum === 3 || winSum === -3) {
+        return gameWon = true;
+      }
     }
   }
 
