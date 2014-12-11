@@ -51,6 +51,14 @@ module.exports = function (history) {
               timestamp: cmd.timestamp
             })
           }
+          if(gameState.gameDraw()) {
+            events.push({
+              event: "GameDraw",
+              user: cmd.user,
+              gameName: cmd.gameName,
+              timestamp: cmd.timestamp
+            })
+          }
           return events;
         }
 

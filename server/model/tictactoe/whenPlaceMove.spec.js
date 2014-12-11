@@ -342,4 +342,48 @@ describe("move placed command", function() {
     // Assert
     should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
   });
+  it("should emit game draw event", function() {
+    //Arrange
+    var given = [
+      gameCreatedEvent,
+      gameJoinedEvent,
+      placeMove([0,0], X),
+      placeMove([0,1], O),
+      placeMove([0,2], X),
+      placeMove([1,1], O),
+      placeMove([1,0], X),
+      placeMove([1,2], O),
+      placeMove([2,1], X),
+      placeMove([2,0], O)
+    ];
+
+    var when = {
+      cmd: "PlaceMove",
+      user: {
+        userName: "karlkyn"
+      },
+      gameName: "Fun times",
+      timestamp: 1417851954,
+      move: {
+        coordinates: [2,2],
+        symbol: X
+      }
+    };
+
+    var then = [placeMove([2,2], X),
+      {
+        event: "GameDraw",
+        user: {
+          userName: "karlkyn"
+        },
+        gameName: "Fun times",
+        timestamp: 1417851954
+      }];
+
+    // Act
+    var actualEvents = tictactoe(given).executeCommand(when);
+
+    // Assert
+    should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
+  });
 });

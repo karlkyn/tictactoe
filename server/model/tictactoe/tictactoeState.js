@@ -6,7 +6,8 @@ module.exports = function(history) {
   var gameFull  = false;
   var gameBoard = [[0,0,0],[0,0,0],[0,0,0]];
   var gameWon   = false;
-  var moves = 0;
+  var gameDraw  = false;
+  var moves     = 0;
 
   function processEvent(event) {
     var winSum = 0;
@@ -59,6 +60,11 @@ module.exports = function(history) {
       if (winSum === 3 || winSum === -3) {
         return gameWon = true;
       }
+
+      // Check for draw
+      if (moves >= 9) {
+        gameDraw = true;
+      }
     }
   }
 
@@ -75,6 +81,9 @@ module.exports = function(history) {
     },
     gameWon: function() {
       return gameWon;
+    },
+    gameDraw: function() {
+      return gameDraw;
     }
   }
 };
