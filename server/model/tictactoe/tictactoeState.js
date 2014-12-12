@@ -61,14 +61,13 @@ module.exports = function(history) {
       winSum += gameBoard[2][0];
 
       if (winSum === 3 || winSum === -3) {
-        gameWon = true
+        gameWon = true;
         return;
       }
 
       // Check for draw
       if (moves >= 9) {
         gameDraw = true;
-        return;
       }
     }
   }
