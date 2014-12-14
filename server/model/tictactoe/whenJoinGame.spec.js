@@ -8,6 +8,7 @@ describe("join game command", function() {
   it("should emit game joined event", function() {
     //Arrange
     var given = [{
+      id: "12345",
       event: "GameCreated",
       user: {
         username: "karlkyn"
@@ -17,6 +18,7 @@ describe("join game command", function() {
     }];
 
     var when = {
+      id: "12345",
       cmd: "JoinGame",
       user: {
         username: "karlkyn"
@@ -26,6 +28,7 @@ describe("join game command", function() {
     };
 
     var then = [{
+      id: "12345",
       event: "GameJoined",
       user: {
         username: "karlkyn"
@@ -44,6 +47,7 @@ describe("join game command", function() {
   it("should emit full game joined event", function() {
     //Arrange
     var given = [{
+        id: "12345",
         event: "GameCreated",
         user: {
           username: "karlkyn"
@@ -52,6 +56,7 @@ describe("join game command", function() {
         timestamp: 1417851954
       },
       {
+        id: "12345",
         event: "GameJoined",
         user: {
           username: "tronics"
@@ -61,6 +66,7 @@ describe("join game command", function() {
       }];
 
     var when = {
+      id: "12345",
       cmd: "JoinGame",
       user: {
         username: "bobo"
@@ -70,6 +76,7 @@ describe("join game command", function() {
     };
 
     var then = [{
+        id: "12345",
         event: "JoinFullGameAttempted",
         user: {
           username: "bobo"

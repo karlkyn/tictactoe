@@ -20,6 +20,7 @@ module.exports = function (history) {
         "JoinGame": function(cmd) {
           if(gameState.gameFull()) {
             return [{
+              id: cmd.id,
               event: "JoinFullGameAttempted",
               user : cmd.user,
               gameName: cmd.gameName,
@@ -28,6 +29,7 @@ module.exports = function (history) {
           }
           else {
             return [{
+              id: cmd.id,
               event: "GameJoined",
               user: cmd.user,
               gameName: cmd.gameName,
