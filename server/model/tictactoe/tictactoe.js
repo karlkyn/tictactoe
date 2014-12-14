@@ -39,6 +39,7 @@ module.exports = function (history) {
         },
         "PlaceMove": function(cmd) {
           var events = [{
+            id: cmd.id,
             event: "MovePlaced",
             user: cmd.user,
             gameName: cmd.gameName,
@@ -48,6 +49,7 @@ module.exports = function (history) {
           gameState.processEvents(events);
           if(gameState.gameWon()) {
             events.push({
+              id: cmd.id,
               event: "GameWon",
               user: cmd.user,
               gameName: cmd.gameName,
@@ -56,6 +58,7 @@ module.exports = function (history) {
           }
           if(gameState.gameDraw()) {
             events.push({
+              id: cmd.id,
               event: "GameDraw",
               user: cmd.user,
               gameName: cmd.gameName,

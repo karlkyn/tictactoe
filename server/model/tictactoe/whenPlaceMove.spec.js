@@ -6,6 +6,7 @@ var tictactoe = require("./tictactoe");
 
 // Variables holding events for testing
 var gameCreatedEvent = {
+  id: "12345",
   event: "GameCreated",
   user: {
     userName: "karlkyn"
@@ -15,6 +16,7 @@ var gameCreatedEvent = {
 };
 
 var gameJoinedEvent = {
+  id: "12345",
   event: "GameJoined",
   user: {
     userName: "tronics"
@@ -25,6 +27,7 @@ var gameJoinedEvent = {
 
 function placeMove(coordinates, symbol) {
   return {
+    id: "12345",
     event: "MovePlaced",
     user: {
       userName: "karlkyn"
@@ -47,6 +50,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -60,6 +64,7 @@ describe("move placed command", function() {
     };
 
     var then = [{
+      id: "12345",
       event: "MovePlaced",
       user: {
         userName: "karlkyn"
@@ -83,6 +88,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,0], X), placeMove([0,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -97,6 +103,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([0,2], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -116,6 +123,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([1,0], X), placeMove([1,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -130,6 +138,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([1,2], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -149,6 +158,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([2,0], X), placeMove([2,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -163,6 +173,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,2], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -182,6 +193,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,0], X), placeMove([1,0], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -196,6 +208,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,0], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -215,6 +228,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,1], X), placeMove([1,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -229,6 +243,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,1], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -248,6 +263,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,2], X), placeMove([1,2], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -262,6 +278,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,2], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -281,6 +298,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,0], X), placeMove([1,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -295,6 +313,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,2], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -314,6 +333,7 @@ describe("move placed command", function() {
     var given = [gameCreatedEvent, gameJoinedEvent, placeMove([0,2], X), placeMove([1,1], X)];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -328,6 +348,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,0], X),
       {
+        id: "12345",
         event: "GameWon",
         user: {
           userName: "karlkyn"
@@ -358,6 +379,7 @@ describe("move placed command", function() {
     ];
 
     var when = {
+      id: "12345",
       cmd: "PlaceMove",
       user: {
         userName: "karlkyn"
@@ -372,6 +394,7 @@ describe("move placed command", function() {
 
     var then = [placeMove([2,2], X),
       {
+        id: "12345",
         event: "GameDraw",
         user: {
           userName: "karlkyn"
