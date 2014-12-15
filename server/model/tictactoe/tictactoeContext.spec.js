@@ -15,9 +15,9 @@ describe('tic tac toe game context', function() {
     storeMock.expects("loadEvents").once().withExactArgs("123").returns([]);
     gameMock.expects("executeCommand").once().withArgs().returns([]);
 
-    var cmdHandlers = function() {
+    var cmdHandlers = [function() {
       return tictactoe;
-    };
+    }];
 
     var gameContext = require('./tictactoeContext.js')(eventStore, cmdHandlers);
 
