@@ -11,7 +11,7 @@ exports.createGame = function(req, res) {
     }
   };
 
-  var context = boundedContext(store, [tictactoeHandler]);
+  var context = boundedContext(store, tictactoeHandler);
 
   var result = context.handleCommand(req.body);
 
