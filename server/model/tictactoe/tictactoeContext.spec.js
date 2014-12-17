@@ -5,7 +5,10 @@ var sinon = require('sinon');
 
 describe('tic tac toe game context', function() {
   it('should route command to an instance of tictactoe with a eventstream from a store', function() {
-    var eventStore = { loadEvents: function() {} };
+    var eventStore = {
+      loadEvents: function() {},
+      storeEvents: function() {}
+    };
     var tictactoe = { executeCommand : function() {} };
     var emptyCommand = { id: "123" };
 

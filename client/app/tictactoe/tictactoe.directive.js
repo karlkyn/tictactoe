@@ -6,9 +6,9 @@ angular.module('tictactoeApp').directive('tictactoe', function() {
     templateUrl: 'app/tictactoe/tictactoe.html',
     controller: 'tictactoeController',
     controllerAs: 'ctrl'
-  }
+  };
 }).controller('tictactoeController', function($scope, $http) {
-  this.gameModel = {
+  $scope.gameModel = {
     gameBoard: [[0,0,0],[0,0,0],[0,0,0]],
     users: {
       myName: '',
@@ -18,24 +18,28 @@ angular.module('tictactoeApp').directive('tictactoe', function() {
     gameName: '',
     timestamp: ''
   };
+  $scope.command = '';
 
-  this.createGame = function() {
-    console.log('inside me');
-    this.gameModel.timestamp = Date();
-    var command = "CreateGame";
+  $scope.processHistory = function(history) {
+    $scope.processedHistory = history;
+  };
+
+  $scope.createGame = function(date) {
+    $scope.gameModel.timestamp = date;
+    $scope.command = 'CreateGame';
 
     var data = {
-      'id': this.gameModel.id,
-      'cmd': command,
+      'id': $scope.gameModel.id,
+      'cmd': $scope.command,
       'user': {
-        'username': this.gameModel.users.myName
+        'userName': $scope.gameModel.users.myName
       },
-      'gameName': this.gameModel.gameName,
-      'timestamp': this.gameModel.timestamp
+      'gameName': $scope.gameModel.gameName,
+      'timestamp': $scope.gameModel.timestamp
     };
 
-    $http.post('/api/createGame', data).success(function(history) {
-      console.log(history);
+    $http.post('/api/createGame', data).then(function(history) {
+      $scope.processHistory(history.data.response);
     });
-  }
+  };
 });
