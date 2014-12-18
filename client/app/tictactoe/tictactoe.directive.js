@@ -7,39 +7,66 @@ angular.module('tictactoeApp').directive('tictactoe', function() {
     controller: 'tictactoeController',
     controllerAs: 'ctrl'
   };
-}).controller('tictactoeController', function($scope, $http) {
-  $scope.gameModel = {
-    gameBoard: [[0,0,0],[0,0,0],[0,0,0]],
-    users: {
-      myName: '',
-      strangersName: ''
-    },
-    id: '12345',
-    gameName: '',
-    timestamp: ''
-  };
-  $scope.command = '';
+}).controller('tictactoeController', function($scope, $http, guid, gameModel,$location) {
 
-  $scope.processHistory = function(history) {
-    $scope.processedHistory = history;
+  $scope.id = guid();
+  $scope.myName = '';
+  $scope.command = '';
+  $scope.gameName = '';
+  $scope.timeStamp = '';
+  $scope.gameCreated = false;
+
+  var processEvents = function(events) {
+    $scope.gameModel.handle(events.data);
   };
+
+  $scope.gameModel = gameModel;
 
   $scope.createGame = function(date) {
-    $scope.gameModel.timestamp = date;
+    $scope.timestamp = date;
     $scope.command = 'CreateGame';
 
     var data = {
-      'id': $scope.gameModel.id,
+      'id': $scope.id,
       'cmd': $scope.command,
       'user': {
-        'userName': $scope.gameModel.users.myName
+        'userName': $scope.myName,
+        'symbol': 1
       },
-      'gameName': $scope.gameModel.gameName,
-      'timestamp': $scope.gameModel.timestamp
+      'gameName': $scope.gameName,
+      'timestamp': $scope.timestamp
     };
 
-    $http.post('/api/createGame', data).then(function(history) {
-      $scope.processHistory(history.data.response);
+    $http.post('/api/createGame', data).then(function(events) {
+      processEvents(events);
+      $location.search('gameId', events.data[0].id);
     });
+
+    $scope.$watch(function(){
+      return $location.search()['gameId'];
+    }, function(){
+      $scope.joinUrl = $location.absUrl() + '&joinGame=true'
+    });
+
+    $scope.gameModel.user = data.user;
   };
+}).factory('gameModel', function() {
+  var gameModel = {
+    gameBoard: [[0,0,0],[0,0,0],[0,0,0]],
+    user: {},
+    gameCreated: false,
+    myTurn: false,
+    handle: function(events) {
+      var handlers = {
+        'GameCreated': function(event, gameModel) {
+          gameModel.gameCreated = true;
+          gameModel.id = event.id;
+        }
+      };
+      _.forEach(events, function(ev) {
+        handlers[ev.event] && handlers[ev.event](ev, gameModel);
+      });
+    }
+  };
+  return gameModel;
 });

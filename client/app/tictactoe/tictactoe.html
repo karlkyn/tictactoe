@@ -1,21 +1,21 @@
 <h1>Tic Tac Toe</h1>
-  <input class="form-control" ng-model="ctrl.gameModel.users.myName" placeholder="Username">
-  <input class="form-control" ng-model="ctrl.gameModel.gameName" placeholder="Game name">
-<button ng-click="ctrl.createGame()" class="btn btn-default">Create a new game</button>
-<div id="gameboard">
+  <input class="form-control" ng-model="myName" ng-hide="gameModel.gameCreated" placeholder="Username">
+  <input class="form-control" ng-model="gameName" ng-hide="gameModel.gameCreated" placeholder="Game name">
+<button ng-click="createGame(1417851954)" class="btn btn-default" ng-hide="gameModel.gameCreated">Create a new game</button>
+<div id="gameboard" ng-show="gameModel.gameCreated">
   <div class="row">
-    <div class="col-sm-4">X</div>
-    <div class="col-sm-4">X</div>
-    <div class="col-sm-4">X</div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
   </div>
   <div class="row">
-    <div class="col-sm-4">X</div>
-    <div class="col-sm-4">O</div>
-    <div class="col-sm-4">X</div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
   </div>
   <div class="row">
-    <div class="col-sm-4">X</div>
-    <div class="col-sm-4">O</div>
-    <div class="col-sm-4">X</div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
   </div>
 </div>
