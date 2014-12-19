@@ -15,7 +15,6 @@ angular.module('tictactoeApp').directive('tictactoe', function() {
 
   var processEvents = function(events) {
     $scope.gameModel.handle(events.data);
-    console.log(events);
   };
 
   $scope.gameModel = gameModel;

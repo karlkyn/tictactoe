@@ -24,11 +24,6 @@ describe('New Tic tac toe element', function() {
     });
   }));
 
-  afterEach(function() {
-    httpBackend.verifyNoOutstandingExpectation();
-    httpBackend.verifyNoOutstandingRequest();
-  });
-
   it('Should render a div with Tic Tac Toe as text', function() {
     var element = compile(angular.element('<tictactoe></tictactoe>'))(scope);
     scope.$digest();
@@ -38,7 +33,7 @@ describe('New Tic tac toe element', function() {
     var date = new Date().getTime()/1000;
     httpBackend.expectPOST('/api/createGame', {
       id: '12345',
-      cmd: "CreateGame",
+      cmd: 'CreateGame',
       user: {
         userName: 'karlkyn',
         symbol: 1
@@ -62,7 +57,7 @@ describe('New Tic tac toe element', function() {
 
     expect(scope.gameModel.gameCreated).toBe(true);
     expect(scope.gameModel.user.symbol).toBe(1);
-    expect(location.search()['gameId']).toBe('12345');
+    expect(location.search().gameId).toBe('12345');
     expect(scope.joinUrl).toBe(location.absUrl() + '&joiningGame=true');
 
   });
