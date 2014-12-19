@@ -20,7 +20,7 @@ server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
 
-app.eventStore = require('./eventstore/memoryStore')();
+app.eventStore = require('./eventstore/memorystore')();
 
 
 // Expose app
