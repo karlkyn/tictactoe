@@ -63,7 +63,36 @@ describe('New Tic tac toe element', function() {
     expect(scope.gameModel.gameCreated).toBe(true);
     expect(scope.gameModel.user.symbol).toBe(1);
     expect(location.search()['gameId']).toBe('12345');
-    expect(scope.joinUrl).toBe(location.absUrl() + '&joinGame=true');
+    expect(scope.joinUrl).toBe(location.absUrl() + '&joiningGame=true');
+
+  });
+  it('Should send a join game request and get event back', function() {
+    var date = new Date().getTime()/1000;
+    httpBackend.expectPOST('/api/joinGame', {
+      id: '12345',
+      cmd: 'JoinGame',
+      user: {
+        userName: 'kvenkyn',
+        symbol: -1
+      },
+      timestamp: date
+    }).respond([{
+      id: '12345',
+      event: 'JoinedGame',
+      user: {
+        userName: 'kvenkyn',
+        symbol: -1
+      }
+    }]);
+
+    scope.myName = 'kvenkyn';
+    scope.gameModel.id = '12345';
+
+    scope.joinGame(date);
+    httpBackend.flush();
+
+    expect(scope.gameModel.user.symbol).toBe(-1);
+    expect(scope.joinUrl).toBe(location.absUrl() + '&joiningGame=true');
 
   });
 });
